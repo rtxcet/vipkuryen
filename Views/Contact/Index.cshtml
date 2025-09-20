@@ -1,0 +1,48 @@
+﻿@model vipkuryen.Models.Contact
+
+<section class="contact py-5 bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <!-- Başlık -->
+            <div class="col-lg-8 text-center mb-4">
+                <h2>İletişim</h2>
+                <p>Bize ulaşmak için formu doldurabilir veya doğrudan arayabilirsiniz.</p>
+            </div>
+
+            <!-- Form -->
+            <div class="col-lg-6">
+                @if (TempData["Success"] != null)
+                {
+                    <div class="alert alert-success mt-3 text-center">
+                        <i class="fas fa-check-circle me-2"></i> @TempData["Success"]
+                    </div>
+                }
+
+                <form asp-action="Index" method="post">
+                    <div class="mb-3">
+                        <label asp-for="Title" class="form-label">Adınızı ve Soyadınızı giriniz</label>
+                        <input asp-for="Title" class="form-control"  />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Phone" class="form-label">Telefon Numarası</label>
+                        <input asp-for="Phone" class="form-control" />
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label">Mesajınızı yazınız</label>
+                        <textarea asp-for="Description" class="form-control" rows="4" ></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100" style="padding:12px 0">Gönder</button>
+                </form>
+
+
+            </div>
+
+            @await Component.InvokeAsync("Contact")
+
+        </div>
+    </div>
+</section>

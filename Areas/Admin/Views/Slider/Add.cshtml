@@ -1,0 +1,96 @@
+﻿@model Slider
+
+<div class="container">
+    <div class="col-lg-12 col-xl-12 shadow my-4 ">
+        <div class="card-header bg-primary text-white py-3 d-flex justify-content-between align-items-center mb-2 ">
+            <h6>Yeni Banner</h6>
+        </div>
+        <div class="card border-0 px-2">
+
+            <form method="post" enctype="multipart/form-data">
+
+
+                <!-- Görsel Yükleme -->
+                <div class="mb-4">
+                    <label asp-for="ImageFile" class="form-label fw-semibold">
+                        Görsel Yükle
+                    </label>
+                    <input asp-for="ImageFile" type="file" class="form-control form-control-lg" accept="image/*" id="imageInput" />
+
+                    <span asp-validation-for="ImageFile" class="text-danger"></span>
+
+                    <!-- Görsel önizleme -->
+                    <div class="mt-3 text-center" id="previewContainer" style="display:none;">
+                        <img id="previewImage" src="#" alt="Önizleme" class="img-thumbnail rounded shadow-sm" style="max-width: 200px; max-height: 200px; object-fit: cover;" />
+                    </div>
+                </div>
+
+
+
+
+
+                <!-- Kaydet ve Geri Butonları -->
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end my-4">
+                    <button type="submit" class="btn btn-primary btn-lg px-4" id="submitBtn">
+                        <span class="spinner-border spinner-border-sm me-2 d-none" role="status" aria-hidden="true"></span>
+                        <i class="fas fa-save me-2"></i>Kaydet
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary btn-lg">Geri</a>
+                </div>
+            </form>
+        </div>
+
+        <script>
+            document.getElementById('imageInput').addEventListener('change', function (e) {
+                const file = e.target.files[0];
+                const previewContainer = document.getElementById('previewContainer');
+                const previewImage = document.getElementById('previewImage');
+
+                if (file) {
+                    // Dosya boyutu kontrolü (5MB)
+                    if (file.size > 5 * 1024 * 1024) {
+                        alert('Dosya boyutu 5MB\'dan büyük olamaz!');
+                        this.value = '';
+                        previewContainer.style.display = 'none';
+                        return;
+                    }
+
+                    // Dosya tipi kontrolü
+                    if (!file.type.startsWith('image/')) {
+                        alert('Lütfen sadece resim dosyası seçin!');
+                        this.value = '';
+                        previewContainer.style.display = 'none';
+                        return;
+                    }
+
+                    // Önizleme göster
+                    const reader = new FileReader();
+                    reader.onload = function (event) {
+                        previewImage.src = event.target.result;
+                        previewContainer.style.display = 'block';
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    previewContainer.style.display = 'none';
+                }
+            });
+
+            // Form gönderilirken loading durumu
+            document.querySelector('form').addEventListener('submit', function () {
+                const submitBtn = document.getElementById('submitBtn');
+                const spinner = submitBtn.querySelector('.spinner-border');
+                const icon = submitBtn.querySelector('.fas');
+
+                spinner.classList.remove('d-none');
+                icon.classList.add('d-none');
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status"></span>Kaydediliyor...';
+            });
+        </script>
+
+        @section Scripts {
+            <partial name="_ValidationScriptsPartial" />
+        }
+
+    </div>
+</div>

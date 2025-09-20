@@ -1,0 +1,47 @@
+﻿@model Slider
+
+<div class="container">
+    <div class="col-lg-12 col-xl-12 shadow my-4">
+        <div class="card-header bg-primary text-white py-3 d-flex justify-content-between align-items-center mb-2">
+            <h6>Banner Düzenle</h6>
+        </div>
+        <div class="card border-0 px-2">
+            <form method="post" enctype="multipart/form-data">
+                <input type="hidden" asp-for="Id" />
+
+
+                <!-- Mevcut Resim -->
+                @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                {
+                    <div class="mb-3 text-center">
+                        <label class="form-label fw-semibold">Mevcut Görsel</label><br />
+                        <img src="@Model.ImageUrl" class="img-thumbnail" style="max-height: 200px;" />
+                    </div>
+                }
+
+                <!-- Yeni Görsel Yükle -->
+                <div class="mb-4">
+                    <label asp-for="ImageFile" class="form-label fw-semibold">Yeni Görsel</label>
+                    <input asp-for="ImageFile" type="file" class="form-control" accept="image/*" id="imageInput" />
+                    <span asp-validation-for="ImageFile" class="text-danger"></span>
+                </div>
+
+
+
+                <!-- Butonlar -->
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end my-4">
+                    <button type="submit" class="btn btn-warning btn-lg px-4" id="submitBtn">
+                        <i class="fas fa-save me-2"></i>Güncelle
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary btn-lg">Geri</a>
+                </div>
+            </form>
+        </div>
+
+        @section Scripts {
+            <partial name="_ValidationScriptsPartial" />
+
+
+        }
+    </div>
+</div>

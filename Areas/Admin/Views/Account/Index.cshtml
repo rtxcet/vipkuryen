@@ -1,0 +1,67 @@
+﻿@model ChangeUsernameViewModel
+
+
+<div class="container">
+	<div class="col-lg-12 col-xl-12 shadow my-4">
+		@if (ViewBag.Message != null)
+		{
+			<div id="successMessage" class="alert alert-success alert-dismissible fade show shadow-sm fw-semibold" role="alert">
+				<i class="fas fa-check-circle me-2"></i>
+				@ViewBag.Message
+			</div>
+		}
+	</div>
+</div>
+
+<div class="container">
+	<div class="col-lg-12 col-xl-12 shadow my-4 ">
+		<div class="card-header bg-primary text-white py-3 d-flex justify-content-between align-items-center mb-2 ">
+			<h6>Kullanıcı Adı Ayarları</h6>
+		</div>
+		<div class="card border-0 px-2">
+
+			<form method="post">
+
+				<div asp-validation-summary="All" class="text-danger"></div>
+
+
+				<div class="mb-3">
+					<label asp-for="NewUsername" class="form-label">Kullanıcı Adı</label>
+					<input asp-for="NewUsername" class="form-control" placeholder="Yeni kullanıcı adınızı girin" />
+					<span asp-validation-for="NewUsername" class="text-danger small"></span>
+				</div>
+
+				<!-- Kaydet ve Geri Butonları -->
+				<div class="d-grid gap-2 d-md-flex justify-content-md-end my-4">
+					<button type="submit" class="btn btn-primary btn-lg px-4" id="submitBtn">
+						<span class="spinner-border spinner-border-sm me-2 d-none" role="status" aria-hidden="true"></span>
+						<i class="fas fa-save me-2"></i>Kaydet
+					</button>
+
+				</div>
+			</form>
+		</div>
+
+		<script>
+			// Başarı mesajını 7 saniye sonra kaybolacak şekilde animasyonlu gizle
+			window.addEventListener('DOMContentLoaded', () => {
+				const successMessage = document.getElementById('successMessage');
+				if (successMessage) {
+					setTimeout(() => {
+						successMessage.classList.remove('show'); // fade out için
+						successMessage.classList.add('fade');    // animasyon
+						setTimeout(() => {
+							successMessage.remove(); // DOM'dan kaldır
+						}, 500); // fade-out süresi (ms)
+					}, 7000); // 7 saniye bekleme süresi
+				}
+			});
+		</script>
+
+		@section Scripts {
+			<partial name="_ValidationScriptsPartial" />
+
+		}
+
+	</div>
+</div>

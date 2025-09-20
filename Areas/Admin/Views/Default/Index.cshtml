@@ -1,0 +1,78 @@
+﻿@model Home
+
+<div class="container">
+    <div class="col-lg-12 col-xl-12 shadow my-4">
+        @if (ViewBag.Message != null)
+        {
+            <div id="successMessage" class="alert alert-success alert-dismissible fade show shadow-sm fw-semibold" role="alert">
+                <i class="fas fa-check-circle me-2"></i>
+                @ViewBag.Message
+            </div>
+        }
+    </div>
+</div>
+
+<div class="container">
+    <div class="col-lg-12 col-xl-12 shadow my-4 ">
+        <div class="card-header bg-primary text-white py-3 d-flex justify-content-between align-items-center mb-2 ">
+            <h6>Genel Ayalar</h6>
+        </div>
+        <div class="card border-0 px-2">
+
+            <form method="post">
+
+                <!-- Name -->
+                <div class="mb-4">
+                    <label asp-for="Title" class="form-label fw-semibold">
+                        Site Başlığı
+                    </label>
+                    <input asp-for="Title" class="form-control form-control-lg" placeholder="Site Başlığı" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <!-- Name -->
+                <div class="mb-4">
+                    <label asp-for="WhattsapPhone" class="form-label fw-semibold">
+                        Whatsapp Numarası
+                    </label>
+                    <input asp-for="WhattsapPhone" class="form-control form-control-lg" placeholder="Whatsapp Numarası" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+
+                <!-- Name -->
+                <div class="mb-4">
+                    <label asp-for="Phone" class="form-label fw-semibold">
+                        Telefon Numrası
+                    </label>
+                    <input asp-for="Phone" class="form-control form-control-lg" placeholder="Telefon Numrası" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+
+                <!-- Name -->
+                <div class="mb-4">
+                    <label asp-for="Footer" class="form-label fw-semibold">
+                        Alt Menü
+                    </label>
+                    <textarea asp-for="Footer" class="form-control form-control-lg" placeholder="Alt Menü"></textarea>
+                    <span asp-validation-for="Footer" class="text-danger"></span>
+                </div>
+
+
+
+                <!-- Kaydet ve Geri Butonları -->
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end my-4">
+                    <button type="submit" class="btn btn-primary btn-lg px-4" id="submitBtn">
+                        <span class="spinner-border spinner-border-sm me-2 d-none" role="status" aria-hidden="true"></span>
+                        <i class="fas fa-save me-2"></i>Kaydet
+                    </button>
+                </div>
+            </form>
+        </div>
+
+
+        @section Scripts {
+            <partial name="_ValidationScriptsPartial" />
+        }
+
+    </div>

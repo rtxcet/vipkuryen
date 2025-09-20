@@ -1,0 +1,50 @@
+﻿@model Link
+
+<div class="container">
+    <div class="col-lg-12 col-xl-12 shadow my-4">
+        @if (ViewBag.Message != null)
+        {
+            <div id="successMessage" class="alert alert-success alert-dismissible fade show shadow-sm fw-semibold" role="alert">
+                <i class="fas fa-check-circle me-2"></i>
+                @ViewBag.Message
+            </div>
+        }
+    </div>
+</div>
+
+<div class="container">
+    <div class="col-lg-12 col-xl-12 shadow my-4 ">
+        <div class="card-header bg-primary text-white py-3 d-flex justify-content-between align-items-center mb-2 ">
+            <h6>Youtube Link Ayaları</h6>
+        </div>
+        <div class="card border-0 px-2">
+
+            <form method="post">
+
+                <!-- Name -->
+                <div class="mb-4">
+                    <label asp-for="Src" class="form-label fw-semibold">
+                        İsim
+                    </label>
+                    <input asp-for="Src" class="form-control form-control-lg" placeholder="Youtube Linki" />
+                    <span asp-validation-for="Src" class="text-danger"></span>
+                </div>
+
+
+                <!-- Kaydet ve Geri Butonları -->
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end my-4">
+                    <button type="submit" class="btn btn-primary btn-lg px-4" id="submitBtn">
+                        <span class="spinner-border spinner-border-sm me-2 d-none" role="status" aria-hidden="true"></span>
+                        <i class="fas fa-save me-2"></i>Kaydet
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary btn-lg ">Geri</a>
+                </div>
+            </form>
+        </div>
+
+
+        @section Scripts {
+            <partial name="_ValidationScriptsPartial" />
+        }
+
+    </div>

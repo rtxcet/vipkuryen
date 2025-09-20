@@ -1,0 +1,33 @@
+﻿@{
+    string raw = Model.WhattsapPhone; // 905453397261
+    string formatted = raw;
+
+    if (!string.IsNullOrEmpty(raw) && raw.Length == 12 && raw.StartsWith("90"))
+    {
+        formatted = "0" + raw.Substring(2, 3) + " " + raw.Substring(5, 3) + " " +
+                    raw.Substring(8, 2) + " " + raw.Substring(10, 2);
+    }
+
+    string raw2 = Model.Phone; // 905453397261
+    string formatted2 = raw2;
+
+    if (!string.IsNullOrEmpty(raw2) && raw2.Length == 12 && raw2.StartsWith("90"))
+    {
+        formatted2 = "0" + raw2.Substring(2, 3) + " " + raw2.Substring(5, 3) + " " +
+                    raw2.Substring(8, 2) + " " + raw2.Substring(10, 2);
+    }
+}
+
+<!-- Ekstra Butonlar -->
+<div class="col-lg-6 mt-4 mt-lg-0 text-center">
+    <p class="mb-3">Bize doğrudan ulaşın:</p>
+
+    <a href="tel:+@Model.Phone" class="btn btn-primary mb-2 w-100 d-flex align-items-center justify-content-center py-4">
+        <i class="fas fa-phone me-2"></i> @formatted2
+    </a>
+
+    <a href="https://wa.me/@Model.WhattsapPhone" target="_blank" class="btn btn-success w-100 d-flex align-items-center justify-content-center py-4">
+        <i class="fab fa-whatsapp me-2"></i> @formatted
+    </a>
+</div> 
+
