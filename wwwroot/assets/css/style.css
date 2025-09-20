@@ -316,11 +316,11 @@ footer {
     }
 
 .whatsapp-icon {
-    left: 5px;
+    right: 5px;
     background-color: #25D366;
 }
 
 .phone-icon {
-    right: 5px;
+    left: 5px;
     background-color: #0d6efd;
 }

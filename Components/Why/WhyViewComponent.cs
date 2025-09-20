@@ -15,7 +15,12 @@ namespace vipkuryen.Components
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var siteSettings = await _context.Homes.FirstOrDefaultAsync();
-            return View(siteSettings);
+            var whies = await _context.Whys.ToListAsync();
+
+            ViewData["SiteTitle"] = siteSettings?.Title ?? "VIP Kuryen";
+
+            return View(whies);
         }
+
     }
 }

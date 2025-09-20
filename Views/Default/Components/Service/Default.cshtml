@@ -1,0 +1,26 @@
+﻿@model IEnumerable<vipkuryen.Models.Service>
+
+<section id="hizmetler" class="services">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h2 class="display-5 fw-bold">Hizmetlerimiz</h2>
+                <p class="lead text-muted">Size en uygun kurye çözümünü sunuyoruz</p>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var service in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="@service.Ikon"></i>
+                        </div>
+                        <h4 class="mb-3">@service.Title</h4>
+                        <p class="text-muted">@service.Description</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
